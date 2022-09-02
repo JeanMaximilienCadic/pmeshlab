@@ -2,7 +2,7 @@
 <h1 align="center">
   <br>
   <br>
-  PyMeshLab
+  LabMesh
   <br>
 </h1>
 
@@ -20,13 +20,13 @@
 ### Code structure
 ```python
 from setuptools import setup
-from PyMeshLab import __version__
+from labmesh import __version__
 
 setup(
-    name='PyMeshLab',
+    name='labmesh',
     version=__version__,
     packages=[
-        "PyMeshLab",
+        "labmesh",
     ],
     license='MIT',
     author='Jean Maximilien Cadic',
@@ -39,19 +39,20 @@ setup(
     ]
 )
 
+
 ```
 
 ### How to use
 To clone and run this application, you'll need [Git](https://git-scm.com) and [ https://docs.docker.com/docker-for-mac/install/]( https://docs.docker.com/docker-for-mac/install/) and Python installed on your computer. 
 From your command line:
 
-Install PyMeshLab:
+Install labmesh:
 ```bash
 # Clone this repository and install the code
-git clone https://github.com/JeanMaximilienCadic/PyMeshLab
+git clone https://github.com/JeanMaximilienCadic/labmesh
 
 # Go into the repository
-cd PyMeshLab
+cd labmesh
 ```
 
 ### PythonEnv (not recommended)
