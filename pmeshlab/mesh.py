@@ -1,5 +1,5 @@
 import pymeshlab
-from pymeshlab.pmeshlab import Mesh as _Mesh
+from pymeshlab import Mesh as _Mesh
 import numpy as np
 
 

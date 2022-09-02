@@ -2,7 +2,7 @@
 <h1 align="center">
   <br>
   <br>
-  LabMesh
+  pmeshlab
   <br>
 </h1>
 
@@ -20,13 +20,13 @@
 ### Code structure
 ```python
 from setuptools import setup
-from labmesh import __version__
+from pmeshlab import __version__
 
 setup(
-    name='labmesh',
+    name='pmeshlab',
     version=__version__,
     packages=[
-        "labmesh",
+        "pmeshlab",
     ],
     license='MIT',
     author='Jean Maximilien Cadic',
@@ -46,13 +46,13 @@ setup(
 To clone and run this application, you'll need [Git](https://git-scm.com) and [ https://docs.docker.com/docker-for-mac/install/]( https://docs.docker.com/docker-for-mac/install/) and Python installed on your computer. 
 From your command line:
 
-Install labmesh:
+Install pmeshlab:
 ```bash
 # Clone this repository and install the code
-git clone https://github.com/JeanMaximilienCadic/labmesh
+git clone https://github.com/JeanMaximilienCadic/pmeshlab
 
 # Go into the repository
-cd labmesh
+cd pmeshlab
 ```
 
 ### PythonEnv (not recommended)
