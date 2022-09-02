@@ -1,5 +1,4 @@
 # PHONY are targets with no files to check, all in our case
-.PHONY: build bash example_target check-env need_a_config jupyter tensorboard generate_requirement_file rm prune
 .DEFAULT_GOAL := help
 
 PACKAGE_NAME=pmeshlab
