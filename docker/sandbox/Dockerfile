@@ -1,4 +1,4 @@
-FROM cadic/pymeshlab:vanilla
+FROM cadic/pmeshlab:vanilla
 
 # Add wheels
 COPY dist/*.whl /tmp/

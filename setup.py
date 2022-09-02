@@ -1,11 +1,11 @@
 from setuptools import setup
-from labmesh import __version__
+from pmeshlab import __version__
 
 setup(
-    name='labmesh',
+    name='pmeshlab',
     version=__version__,
     packages=[
-        "labmesh",
+        "pmeshlab",
     ],
     license='MIT',
     author='Jean Maximilien Cadic',
