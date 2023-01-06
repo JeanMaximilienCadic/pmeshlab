@@ -1,52 +1,46 @@
-
 <h1 align="center">
-  <br>
   <br>
   pmeshlab
   <br>
+  <br>
+  <img src="https://drive.google.com/uc?id=1adCikDmjjDULmn-3R7_wpyyJX-nzKlHb">
 </h1>
 
 <p align="center">
-  <a href="#code-structure">Code</a> •
-  <a href="#how-to-use">How To Use</a> •
-  <a href="#docker">Docker</a> •
-  <a href="#PythonEnv">PythonEnv</a> •
-  <a href="#Databricks">Databricks</a> •
-
-[comment]: <> (  <a href="#notebook">Notebook </a> •)
+  <a href="#modules">Modules</a> •
+  <a href="#installing-the-application">Installing the application</a> •
+  <a href="#makefile-commands">Makefile commands</a> •
+  <a href="#environments">Environments</a> •
+  <a href="#running-the-application">Running the application</a>
+  <a href="#ressources">Ressources</a>
 </p>
 
 
-### Code structure
-```python
-from setuptools import setup
-from pmeshlab import __version__
+pmeshlab is a Python package that provides two high-level features:
+- A simple Mesh processor
+- A list of tool to convert mesh files into point cloud
 
-setup(
-    name='pmeshlab',
-    version=__version__,
-    packages=[
-        "pmeshlab",
-    ],
-    license='MIT',
-    author='Jean Maximilien Cadic',
-    python_requires='>=3.6',
-    install_requires=[r.rsplit()[0] for r in open("requirements.txt")],
-    description='3D Mesh processing',
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-    ]
-)
+You can reuse your favorite Python packages such as NumPy, SciPy and Cython to extend ZakuroCache integration.
 
 
-```
+# Modules
 
-### How to use
-To clone and run this application, you'll need [Git](https://git-scm.com) and [ https://docs.docker.com/docker-for-mac/install/]( https://docs.docker.com/docker-for-mac/install/) and Python installed on your computer. 
-From your command line:
+At a granular level, pmeshlab is a library that consists of the following components:
 
-Install pmeshlab:
+| Component | Description |
+| ---- | --- |
+| **pmeshlab** | Contains the implementation of pmeshlab |
+
+# Installing the application
+To clone and run this application, you'll need the following installed on your computer:
+- [Git](https://git-scm.com)
+- Docker Desktop
+   - [Install Docker Desktop on Mac](https://docs.docker.com/docker-for-mac/install/)
+   - [Install Docker Desktop on Windows](https://docs.docker.com/desktop/install/windows-install/)
+   - [Install Docker Desktop on Linux](https://docs.docker.com/desktop/install/linux-install/)
+- [Python](https://www.python.org/downloads/)
+
+Install the package:
 ```bash
 # Clone this repository and install the code
 git clone https://github.com/JeanMaximilienCadic/pmeshlab
@@ -55,13 +49,52 @@ git clone https://github.com/JeanMaximilienCadic/pmeshlab
 cd pmeshlab
 ```
 
-### PythonEnv (not recommended)
+# Makefile commands
+Exhaustive list of make commands:
+```
+install_wheels
+sandbox_cpu
+sandbox_gpu
+build_sandbox
+push_environment
+push_container_sandbox
+push_container_vanilla
+pull_container_vanilla
+pull_container_sandbox
+build_vanilla
+build_wheels
+auto_branch 
+```
+# Environments
+
+## Docker
+
+> **Note**
+> 
+> Running this application by using Docker is recommended.
+
+To build and run the docker image
+```
+make build
+make sandbox
+```
+
+## PythonEnv
+
+> **Warning**
+> 
+> Running this application by using PythonEnv is possible but *not* recommended.
 ```
 make install_wheels
 ```
 
-### Docker
-```shell
-make build_docker
-make docker_run_sandbox_cpu
-```
+## Ressources
+* Vanilla:  https://en.wikipedia.org/wiki/Vanilla_software
+* Sandbox: https://en.wikipedia.org/wiki/Sandbox_(software_development)
+* All you need is docker: https://www.theregister.com/2014/05/23/google_containerization_two_billion/
+* Dev in containers : https://code.visualstudio.com/docs/remote/containers
+* Delta lake partitions: https://k21academy.com/microsoft-azure/data-engineer/delta-lake/
+
+
+
+

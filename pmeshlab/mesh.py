@@ -1,6 +1,7 @@
 import pymeshlab
 from pymeshlab import Mesh as _Mesh
 import numpy as np
+import subprocess
 
 
 class Mesh:
@@ -11,21 +12,18 @@ class Mesh:
         elif type(input) == _Mesh:
             self._model.add_mesh(input)
 
-    def connected_components(self):
-        self._model.split_in_connected_components(delete_source_mesh=True)
-        cmpts = []
-        N = len(self._model)
-        for k in range(N):
-            try:
-                cmpts.append(PyMeshLab(self._model[k]))
-            except:
-                pass
-        return cmpts
+    @staticmethod
+    def fingerprint(filename):
+        batcmd = ["xvfb-run", "-a", "meshlabserver", "-i", filename]
+        p = subprocess.Popen(batcmd, stdout=subprocess.PIPE)
+        result = p.stdout.read()
+        splits = result.decode().split("\n")[-2].split(" ")
+        return int(splits[-4]), int(splits[-2])
 
     def show(self):
         return self.to_nmesh().show()
 
-    def to_NMesh(self):
+    def to_nmesh(self):
         from nmesh import NMesh
         from trimesh import Trimesh
 
@@ -45,10 +43,16 @@ class Mesh:
         return self._model[0].face_matrix()
 
     def face_colors(self):
-        return self._model[0].face_color_matrix()
+        try:
+            return self._model[0].face_color_matrix()
+        except:
+            return []
 
     def vertex_colors(self):
-        return self._model[0].vertex_color_matrix()
+        try:
+            return self._model[0].vertex_color_matrix()
+        except:
+            return []
 
     def face_color(self):
         return self._model[0].face_color_matrix()[0]
@@ -77,3 +81,10 @@ class Mesh:
 
     def export(self, *args, **kwargs):
         self.to_nmesh().export(*args, **kwargs)
+
+    def cp2mesh(self, taubin=True):
+        self._model.compute_normal_for_point_clouds()
+        self._model.generate_surface_reconstruction_screened_poisson()
+        self._model = Mesh(self._model[1])._model
+        self._model.apply_coord_taubin_smoothing() if taubin else None
+        return self
