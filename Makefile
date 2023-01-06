@@ -50,13 +50,12 @@ build_docker_sandbox:
 # BUILD WHEEL
 build_wheels: build_wheel
 
-install_requirements:
-	@pip install -r requirements.txt
-
-build_wheel: clean install_requirements
+build_wheel:
 	# Build the wheels
-	@mv dist/$(PACKAGE_NAME)*.whl dist/legacy/ || true; \
-		python setup.py bdist_wheel && rm -r build *.egg-info; \
+	@mv dist/*.whl dist/legacy/ || true
+	@pip wheel . -w ./dist
+	@mv dist/${PACKAGE_NAME}*.whl ./ && rm dist/*.whl && mv ${PACKAGE_NAME}*.whl dist/
+	@clean || true
 
 # PUSH
 push_dockers: push_docker_vanilla push_docker_sandbox

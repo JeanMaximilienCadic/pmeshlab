@@ -4,4 +4,5 @@ FROM python:3.9.13-buster
 RUN apt update &&\
         apt install \
         libgl1-mesa-glx \
+        xvfb \
         meshlab -y
