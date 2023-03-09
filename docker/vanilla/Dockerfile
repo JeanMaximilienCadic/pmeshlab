@@ -1,4 +1,4 @@
-FROM python:3.9.13-buster
+FROM python:3.12.0a5-buster
 
 # Add system deps
 RUN apt update &&\
